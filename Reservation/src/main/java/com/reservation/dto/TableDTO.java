@@ -1,4 +1,4 @@
-package com.reservation.DTO;
+package com.reservation.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,6 @@ import lombok.Data;
 public class TableDTO {
 	private int tableId;
 	private Integer capacity;
-	private Boolean isAvailable;
 
 	public int getTableId() {
 		return tableId;
@@ -24,25 +23,16 @@ public class TableDTO {
 		this.capacity = capacity;
 	}
 
-	public Boolean getIsAvailable() {
-		return isAvailable;
-	}
-
-	public void setIsAvailable(Boolean isAvailable) {
-		this.isAvailable = isAvailable;
-	}
-
 	public TableDTO() {
 	}
 
 	public TableDTO(int tableId, Integer capacity, Boolean isAvailable) {
 		this.tableId = tableId;
 		this.capacity = capacity;
-		this.isAvailable = isAvailable;
 	}
 
 	@Override
 	public String toString() {
-		return "TableDTO{" + "tableId=" + tableId + ", capacity=" + capacity + ", isAvailable=" + isAvailable + '}';
+		return "TableDTO{" + "tableId=" + tableId + ", capacity=" + capacity +  '}';
 	}
 }

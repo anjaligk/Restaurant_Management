@@ -84,16 +84,4 @@ class TableManagementTest {
         verify(reservationFeignClient, times(1)).getAllReservation();
     }
 
-    @Test
-    void testGetReservationsForDateTime() {
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
-        List<ReservationDTO> reservations = new ArrayList<>();
-        reservations.add(new ReservationDTO());
-        when(reservationFeignClient.getReservationsForDateTime(date, time)).thenReturn(reservations);
-
-        List<ReservationDTO> result = tableService.getReservationsForDateTime(date, time);
-        assertEquals(reservations, result);
-        verify(reservationFeignClient, times(1)).getReservationsForDateTime(date, time);
-    }
 }

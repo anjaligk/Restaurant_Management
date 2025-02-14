@@ -20,8 +20,10 @@ public class ReservationLoggingAspect {
     @Before("execution(* com.reservation.service.*.*(..))")
     public void logBefore(JoinPoint joinPoint) {
     	logger.info("Entering method: {}", joinPoint.getSignature().getName());
-        logger.info("Arguments: {}", Arrays.toString(joinPoint.getArgs()));
-    }
+    	if (logger.isInfoEnabled()) {
+    	    logger.info("Arguments: {}", Arrays.toString(joinPoint.getArgs()));
+    	}
+   }
 
 
     @AfterReturning(pointcut = "execution(* com.reservation.service.*.*(..))", returning = "result")

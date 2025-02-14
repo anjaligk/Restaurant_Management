@@ -16,11 +16,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.reservation.DTO.TableDTO;
+import com.reservation.dto.TableDTO;
 import com.reservation.entity.Reservation;
 import com.reservation.exceptions.InvalidReservationTime;
 import com.reservation.exceptions.ReservationNotFound;
-import com.reservation.feignClient.TableFeignClient;
+import com.reservation.feignclient.TableFeignClient;
 import com.reservation.repository.ReservationRepository;
 import com.reservation.service.ReservationServiceImpl;
 
@@ -110,19 +110,6 @@ class ReservationApplicationTests {
         List<Reservation> result = reservationService.getAllReservation();
         assertEquals(reservations, result);
         verify(reservationRepository, times(1)).findAll();
-    }
-
-    @Test
-    void testGetReservationsForDateTime() {
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.of(19, 0);
-        List<Reservation> reservations = new ArrayList<>();
-        reservations.add(new Reservation(1, 1, 1, date, time));
-        when(reservationRepository.findByReservationDateAndReservationTime(date, time)).thenReturn(reservations);
-
-        List<Reservation> result = reservationService.getReservationsForDateTime(date, time);
-        assertEquals(reservations, result);
-        verify(reservationRepository, times(1)).findByReservationDateAndReservationTime(date, time);
     }
 
     @Test

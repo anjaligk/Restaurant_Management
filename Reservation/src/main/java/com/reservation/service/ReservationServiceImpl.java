@@ -8,13 +8,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
-import com.reservation.DTO.TableDTO;
+import com.reservation.dto.TableDTO;
 import com.reservation.entity.Reservation;
 import com.reservation.exceptions.InvalidReservationTime;
 import com.reservation.exceptions.ReservationNotFound;
-import com.reservation.feignClient.TableFeignClient;
+import com.reservation.feignclient.TableFeignClient;
 import com.reservation.repository.ReservationRepository;
 
 import jakarta.transaction.Transactional;
@@ -73,21 +74,18 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getAllReservation() {
 		return reservationRepository.findAll();
 	}
-
-	@Override
+	
 	public List<Reservation> getReservationsForDateTime(LocalDate date, LocalTime time) {
-		return reservationRepository.findByReservationDateAndReservationTime(date, time);
+		return reservationRepository.findByReservationDateAndReservationTime( date, time);
 	}
+	
 
 	@Override
 	public List<TableDTO> getAvailableTablesForDateTime(LocalDate date, LocalTime time) {
-		// Fetch all tables
 		List<TableDTO> allTables = tableFeignClient.getAllTable();
 
-		// Fetch reservations for the specified date and time
 		List<Reservation> reservations = reservationRepository.findByReservationDateAndReservationTime(date, time);
 
-		// Extract reserved table IDs
 		List<Integer> bookedTableIds = reservations.stream().map(Reservation::getTableId).collect(Collectors.toList());
 
 		// Filter out booked tables

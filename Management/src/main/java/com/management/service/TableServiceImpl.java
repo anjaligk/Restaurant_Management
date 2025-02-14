@@ -50,10 +50,10 @@ public class TableServiceImpl implements TableService {
 	public List<ReservationDTO> getAllReservation() {
 		return reservationFeignClient.getAllReservation();
 	}
-
+	
 	@Override
 	public List<ReservationDTO> getReservationsForDateTime(LocalDate date, LocalTime time) {
-		return reservationFeignClient.getReservationsForDateTime(date, time);
+		return reservationFeignClient.getAllReservationByDateandTime(date, time);
 	}
 
 }

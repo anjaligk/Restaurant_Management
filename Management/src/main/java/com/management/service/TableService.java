@@ -18,7 +18,7 @@ public interface TableService {
 	public List<TableEntity> getAllTable();
 
 	List<ReservationDTO> getAllReservation();
-
+	
 	List<ReservationDTO> getReservationsForDateTime(LocalDate date, LocalTime time);
-
+	
 }

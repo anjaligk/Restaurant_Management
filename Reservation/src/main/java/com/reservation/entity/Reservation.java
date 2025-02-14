@@ -23,10 +23,10 @@ public class Reservation {
 	private int reservationId;
 	
 	@Column(nullable = false)
-	private int customerId; // foreign key or link to user micro-service.
+	private int customerId; 
 	
 	@Column(nullable = false)
-	private int tableId; // Foreign key to Tables table in management
+	private int tableId;
 	
 	@Column(nullable = false)
 	private LocalDate reservationDate;

@@ -30,17 +30,17 @@ public class TableController {
         this.tableService = tableService;
     }
 
-	@PostMapping("/add") // http://localhost:8082/manageTable/add
+	@PostMapping("/add")
 	public TableEntity addTable(@RequestBody TableEntity table) {
 		return tableService.addTable(table);
 	}
 
-	@PutMapping("/change") // http://localhost:8082/manageTable/change
+	@PutMapping("/change")
 	public TableEntity updateTable(@RequestBody TableEntity table) {
 		return tableService.updateTable(table);
 	}
 
-	@DeleteMapping("/delete/{TableId}") // http://localhost:8082/manageTable/delete/tableId
+	@DeleteMapping("/delete/{TableId}")
 	public void deleteTable(@PathVariable("TableId") int tableId) {
 	tableService.deleteTable(tableId);
 	}
@@ -55,10 +55,9 @@ public class TableController {
 		return tableService.getAllReservation();
 	}
 
-	@GetMapping("/findByDateAndTime")
+	@GetMapping("/getReservationByDateAndTime")
 	public List<ReservationDTO> getReservationsForDateTime(@RequestParam("date") LocalDate date,
 			@RequestParam("time") LocalTime time) {
 		return tableService.getReservationsForDateTime(date, time);
 	}
-
 }

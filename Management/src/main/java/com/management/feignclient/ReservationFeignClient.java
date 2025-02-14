@@ -15,8 +15,10 @@ public interface ReservationFeignClient {
 
 	@GetMapping("/getall")
 	public List<ReservationDTO> getAllReservation();
-
+	
 	@GetMapping("/findByDateAndTime")
-	List<ReservationDTO> getReservationsForDateTime(@RequestParam("date") LocalDate date,
-			@RequestParam("time") LocalTime time);
+	public List<ReservationDTO> getAllReservationByDateandTime(@RequestParam("date") LocalDate date,
+					@RequestParam("time") LocalTime time );
+
+	
 }

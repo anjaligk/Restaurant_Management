@@ -32,9 +32,5 @@ public class UserServiceImpl implements UserService{
 		this.userRepository = userRepository;
 	}
 	
-//	public String AUthenticateUser(String username) {
-//		
-//	}
-	
 
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.reservation.DTO.TableDTO;
+import com.reservation.dto.TableDTO;
 import com.reservation.entity.Reservation;
 import com.reservation.exceptions.ReservationNotFound;
 
@@ -18,7 +18,7 @@ public interface ReservationService {
 
 	public void cancelReservation(int reservationId);
 
-	List<Reservation> getReservationsForDateTime(LocalDate date, LocalTime time);
-
 	List<TableDTO> getAvailableTablesForDateTime(LocalDate date, LocalTime time);
+	
+	public List<Reservation> getReservationsForDateTime(LocalDate date, LocalTime time);
 }

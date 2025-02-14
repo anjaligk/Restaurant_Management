@@ -1,11 +1,11 @@
-package com.reservation.feignClient;
+package com.reservation.feignclient;
 
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.reservation.DTO.TableDTO;
+import com.reservation.dto.TableDTO;
 
 @FeignClient(name = "MANAGEMENT", path = "/manageTable")
 public interface TableFeignClient {

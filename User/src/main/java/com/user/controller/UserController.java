@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.user.entity.User;
 import com.user.service.UserService;
 
-import lombok.AllArgsConstructor;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	
-	@Autowired
-	UserService userService;
+	private final UserService userService;
 
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+    
 	@PostMapping("/register")
 	public ResponseEntity<User> registerUser(@RequestBody User user) {
 		return ResponseEntity.ok(userService.registerUser(user));

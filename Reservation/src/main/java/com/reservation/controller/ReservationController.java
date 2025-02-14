@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.reservation.DTO.TableDTO;
+import com.reservation.dto.TableDTO;
 import com.reservation.entity.Reservation;
 import com.reservation.exceptions.ReservationNotFound;
 import com.reservation.service.ReservationService;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/reservation") 
 public class ReservationController {
 
 	private final ReservationService reservationService;
@@ -30,18 +30,18 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-	@GetMapping("/available-tables") // http://localhost:8084/reservation/available-tables?date=2025-02-05&time=20:30
+	@GetMapping("/available-tables")
 	public List<TableDTO> getAvailableTables(@RequestParam("date") LocalDate date,
 			@RequestParam("time") LocalTime time) {
 		return reservationService.getAvailableTablesForDateTime(date, time);
 	}
 
-	@PostMapping("/book") // http://localhost:8084/reservation/book
+	@PostMapping("/book")
 	public Reservation bookTable(@RequestBody Reservation reservation) {
 		return reservationService.bookTable(reservation);
 	}
 
-	@DeleteMapping("/cancel/{reservationId}") // http://localhost:8084/reservation/cancel/5001
+	@DeleteMapping("/cancel/{reservationId}")
 	public void cancelReservation(@PathVariable int reservationId) {
 		reservationService.cancelReservation(reservationId);
 	}
@@ -55,11 +55,13 @@ public class ReservationController {
 	public List<Reservation> getAllReservation() {
 		return reservationService.getAllReservation();
 	}
-
+	
 	@GetMapping("/findByDateAndTime")
-	public List<Reservation> getReservationsForDateTime(@RequestParam("date") LocalDate date,
-			@RequestParam("time") LocalTime time) {
-		return reservationService.getReservationsForDateTime(date, time);
+	public List<Reservation> getAllReservationByDateandTime(@RequestParam("date") LocalDate date,
+					@RequestParam("time") LocalTime time )
+	{
+		return reservationService.getReservationsForDateTime(date,time);
 	}
+
 
 }
